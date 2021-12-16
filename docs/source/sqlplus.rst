@@ -39,7 +39,7 @@ Parameters
 
 
   ignore_errors (optional, bool, False)
-    Module fails on error (ORA-* or SP2-*)
+    Module fails on error (ORA- or SP2-)
 
 
   chdir (optional, any, None)

@@ -35,7 +35,7 @@ options:
     default: no
   ignore_errors:
     description:
-      - Module fails on error (ORA-* or SP2-*)
+      - Module fails on error (ORA- or SP2-)
     type: bool
     default: no
   chdir:

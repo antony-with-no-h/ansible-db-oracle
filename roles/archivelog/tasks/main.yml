@@ -1,0 +1,5 @@
+- import_tasks: archivelog
+  when: "mode == 'archivelog'"
+  
+- import_tasks: noarchivelog
+  when: "mode == 'noarchivelog'"

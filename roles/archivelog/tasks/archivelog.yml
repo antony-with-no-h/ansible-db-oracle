@@ -1,0 +1,33 @@
+- name: Querying v$database
+  antony_with_no_h.oracle.table_dictionary:
+    database_name: "{{ sid | d(inventory_hostname) }}"
+    table_name: v$database
+  register: v_database
+  
+- name: Querying v$parameter
+  antony_with_no_h.oracle.table_dictionary:
+    database_name: "{{ sid | d(inventory_hostname) }}"
+    table_name: v$parameter
+    column_as_key: name
+  register: v_parameter
+
+# this needs more work to preserve any other options while also ensursing
+# that the location is set.
+- name: Setting log_archive_dest_1
+  antony_with_no_h.oracle.sqlplus:
+    database_name: "{{ sid | d(inventory_hostname) }}"
+    sql: |
+      CONN / AS SYSDBA
+      ALTER SYSTEM SET log_archive_dest_1='location=+FRA_GROUP' SCOPE=both;
+  when: (v_parameter.resultset.log_archive_dest_1.DISPLAY_VALUE | regex_search('\+FRA_GROUP')) == none
+
+- name: Enable archive logging
+  antony_with_no_h.oracle.sqlplus:
+    database_name: "{{ sid | d(inventory_hostname) }}"
+    sql: |
+      CONN / AS SYSDBA
+      SHUT IMMEDIATE;
+      STARTUP MOUNT;
+      ALTER DATABASE ARCHIVELOG;
+      ALTER DATABASE OPEN;
+  when: "v_database.resultset.LOG_MODE == 'NOARCHIVELOG'"

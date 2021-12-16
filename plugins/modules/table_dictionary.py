@@ -20,7 +20,7 @@ options:
       - Name of the database to connect to
     required: true
     type: str
-  table:
+  table_name:
     description:
       - The database table to be queried
     required: true

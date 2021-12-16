@@ -54,7 +54,7 @@ And an example playbook
     register: ora_inventory
   
   - name: Install database software
-    ansible.builtin.shell: >
+    ansible.builtin.shell: >-
       runInstaller 
         -responseFile "{{ oracle_home }}/install/response/db_install.rsp"
         -waitforcompletion

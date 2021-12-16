@@ -19,7 +19,7 @@ Primarily a collection of modules for use with an Oracle database(s), written wi
 Install directly from git
 
 ```bash
-ansible-galaxy collection install git+git@github.com:antony-with-no-h/ansible-oracle.git
+ansible-galaxy collection install git+git@github.com:antony-with-no-h/ansible-db-oracle.git
 ```
 
 ## Usage

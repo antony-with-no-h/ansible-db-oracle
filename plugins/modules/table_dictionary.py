@@ -20,11 +20,13 @@ options:
       - Name of the database to connect to
     required: true
     type: str
+    aliases: ['name', 'sid']
   table_name:
     description:
       - The database table to be queried
     required: true
     type: str
+    aliases: ['table']
   column_as_key:
     description:
       - Use column name as dictionary key

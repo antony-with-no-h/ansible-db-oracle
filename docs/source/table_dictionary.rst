@@ -26,7 +26,7 @@ Parameters
     Name of the database to connect to
 
 
-  table (True, str, None)
+  table_name (True, str, None)
     The database table to be queried
 
 

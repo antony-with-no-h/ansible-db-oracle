@@ -4,7 +4,6 @@
 # ISC License (see LICENSE or https://www.isc.org/licenses)
 
 from __future__ import (absolute_import, print_function, division)
-from os import environ
 __metaclass__ = type
 
 import csv
@@ -50,12 +49,19 @@ def oratab(oratab_loc='/etc/oratab'):
     with open(oratab_loc, 'r') as fd:
         oratab_contents = list(csv.reader(strip_comments(fd)))
     
-    oratab_dict = {
-        row[0]: {
+    oratab_dict = dict(
+        (row[0], {
             'oracle_home': row[1],
             'dbstart': row[2],
-        } for row in [line[0].split(':') for line in oratab_contents if line]
-    }
+        }) for row in (line[0].split(':') for line in oratab_contents if line)
+    )
+    
+    #oratab_dict = {
+    #    row[0]: {
+    #        'oracle_home': row[1],
+    #        'dbstart': row[2],
+    #    } for row in [line[0].split(':') for line in oratab_contents if line]
+    #}
     
     return oratab_dict
 

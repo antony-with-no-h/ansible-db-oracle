@@ -61,6 +61,12 @@ EXAMPLES = r"""
       - v_parameter.resultset.processes.DISPLAY_VALUE < 400
 """
 
+import platform
+
+python_tuple = tuple(map(int, platform.python_version_tuple()))
+if python_tuple <= (2, 7, 18):
+    from itertools import izip as zip
+
 import ansible_collections.antony_with_no_h.oracle.plugins.module_utils.common as noh
 from ansible.module_utils.basic import AnsibleModule
 

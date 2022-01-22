@@ -61,6 +61,14 @@ EXAMPLES = r"""
       - v_parameter.resultset.processes.DISPLAY_VALUE < 400
 """
 
+RETURN = r"""
+resultset:
+  description: Table data as a dictionary object
+  returned: success
+  type: dict
+  sample:
+"""
+
 import platform
 
 python_tuple = tuple(map(int, platform.python_version_tuple()))
@@ -155,10 +163,10 @@ def main(module):
                 in table_data.split('\n') if column
         ]
         
-        resultset = {
-            data_iter[key_index]: dict(zip(columns, data_iter))
+        resultset = dict(
+            (data_iter[key_index], dict(zip(columns, data_iter)))
                 for data_iter in table_data_list
-        }
+        )
         
     module_exit = {
         'changed': False,

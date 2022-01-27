@@ -6,16 +6,16 @@ Primarily a collection of modules for use with an Oracle database(s), written wi
 
 ## Design Principles
 
-- **Keep support for Python 2.6**
+- **Keep support for Python 2.6**  
   Enterprise distros are never cutting edge and companies that buy 'Extended Life Cycle Support' mean, just like me, you may have some pretty old versions of python hanging around.
   
-- **Keep modules to a minimum**
+- **Keep modules to a minimum**  
   Since a lot of modules are going to be a wrapper around `subprocess()` I prefer to use `ansible.builtin.command` or `ansible.builtin.shell` and provide ways to **enhance** those modules for Oracle usage. 
 
-- **No third party libraries**
+- **No third party libraries**  
   Limits imposed either by software (no pip), device (firewalls), team (sysadmin says no) or policy (security says no). Or anything else. Means not everyone gets to install `cx_Oracle` or anything they please from pip.
 
-- **Flexibility**
+- **Flexibility**  
   It is difficult to know every use case 'any other' person may have in their organisation. I wrote this collection with flexibility in mind, so you can make it fit the way you do things rather than how I do or how I think you should do it.
   
 ## Features

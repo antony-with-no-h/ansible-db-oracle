@@ -4,14 +4,34 @@
 
 Primarily a collection of modules for use with an Oracle database(s), written with 0 dependencies in mind.
 
+## Design Principles
+
+- **Keep support for Python 2.6**
+  Enterprise distros are never cutting edge and companies that buy 'Extended Life Cycle Support' mean, just like me, you may have some pretty old versions of python hanging around.
+  
+- **Keep modules to a minimum**
+  Since a lot of modules are going to be a wrapper around `subprocess()` I prefer to use `ansible.builtin.command` or `ansible.builtin.shell` and provide ways to **enhance** those modules for Oracle usage. 
+
+- **No third party libraries**
+  Limits imposed either by software (no pip), device (firewalls), team (sysadmin says no) or policy (security says no). Or anything else. Means not everyone gets to install `cx_Oracle` or anything they please from pip.
+
+- **Flexibility**
+  It is difficult to know every use case 'any other' person may have in their organisation. I wrote this collection with flexibility in mind, so you can make it fit the way you do things rather than how I do or how I think you should do it.
+  
 ## Features
 
-- Zero dependencies  
-  *Because sometimes the distro Python is all you've got*
-- Python 2 Support  
-  *Ansible 2.11 still supports 2.6 so this will too*
-- Documentation  
-  *What!? - [docs/source](docs/source)* [^1]
+- **Tables as dictionaries**
+  Intended for 'DBA' views like `v$database`, but not limited to, return a dictionary object (yaml: `mapping`).
+  
+- **Tables as lists**
+  Get nested or unnested list objects (yaml: `sequence`)
+
+- **Parse the Central Inventory**
+  Make not installing software twice (or at least attempting to) easy by checking the central inventory first.
+  
+- **Documentation**  
+  - *What!? - [docs/source](docs/source)* [^1]
+  - https://ansible-db-oracle.readthedocs.io/en/latest/
 
 
 ## Installation

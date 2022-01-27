@@ -69,6 +69,7 @@ resultset:
   sample:
 """
 
+import re
 import platform
 
 python_tuple = tuple(map(int, platform.python_version_tuple()))
@@ -128,9 +129,13 @@ def main(module):
         
         module.fail_json(**module_fail)
     
-    # remove the header and split on \t to get the column names
+    # remove the header and split on \s or \t to get the column names
+    column_desc = [
+        col.strip() for col in table_desc.split('\n')
+    ]
+    
     columns = [
-        name.split('\t')[0].strip() for name in table_desc.split('\n')[2:] if name
+        re.split(r'[\s\t]+', col)[0] for col in column_desc[2:] if col
     ]
         
     if column_as_key is None:

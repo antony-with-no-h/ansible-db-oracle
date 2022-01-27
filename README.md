@@ -20,13 +20,13 @@ Primarily a collection of modules for use with an Oracle database(s), written wi
   
 ## Features
 
-- **Tables as dictionaries**
+- **Tables as dictionaries**  
   Intended for 'DBA' views like `v$database`, but not limited to, return a dictionary object (yaml: `mapping`).
   
-- **Tables as lists**
+- **Tables as lists**  
   Get nested or unnested list objects (yaml: `sequence`)
 
-- **Parse the Central Inventory**
+- **Parse the Central Inventory**  
   Make not installing software twice (or at least attempting to) easy by checking the central inventory first.
   
 - **Documentation**  
